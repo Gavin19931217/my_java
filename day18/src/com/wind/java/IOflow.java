@@ -1,6 +1,7 @@
 package com.wind.java;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,7 +13,30 @@ import java.util.Date;
  */
 public class IOflow {
     public static void main(String[] args) {
-        File file = new File("D://Code//Intellij IDEA//test//abc.txt");  //file对象是堆内存中创建出来的一个对象空间
+//        File file = new File("D://Code//Intellij IDEA//test//haha.txt");  //file对象是堆内存中创建出来的一个对象空间
+
+        //在硬盘上创建一个文件夹
+//        boolean value = file.mkdir(); //外层父元素需要真实的存在
+//        System.out.println(value);
+
+//        boolean value = file.mkdirs(); //可以创建文件夹 如果外层没有 也会同时创建
+//        System.out.println(value);
+
+//        String pname = getParent(); //获取当前file的父级file名称
+//        File file = getParentFile(); //获取当前file的父级file的对象
+
+        File file = new File("D://test//aaa");
+        File[] files = file.listFiles();
+        System.out.println(files); //数组对象为空，证明当前的file是一个文件，否则是文件夹
+        System.out.println(files.length); //数组对象的长度不为0，证明当前的file是一个不为空的文件夹，即文件夹里面有元素
+
+        //通过这个对象 回头在硬盘上 创建文件
+        try {
+            boolean value = file.createNewFile(); //编译时异常
+            System.out.println(value);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         String name = file.getName(); //获取文件的名称
         String path = file.getAbsolutePath(); //获取文件的绝对路径
